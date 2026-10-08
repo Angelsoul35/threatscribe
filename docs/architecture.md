@@ -18,10 +18,17 @@ is.
 
 ## Data flow
 
-```
- report text ─▶ refang ─▶ IOC regexes ─▶ deduped indicators ┐
-             ─▶ keyword map ─▶ ATT&CK technique tags         ├─▶ result
-             ─▶ LLM summary (or extractive fallback)         ┘
+```mermaid
+flowchart LR
+    A[Report text] --> B[Refang]
+    B --> C[IOC regexes]
+    C --> D[Deduped indicators]
+    A --> E[Keyword map]
+    E --> F["ATT&CK technique tags"]
+    A --> G[LLM summary<br/>or extractive fallback]
+    D --> H[Result]
+    F --> H
+    G --> H
 ```
 
 ## The core design decision: deterministic where it counts
