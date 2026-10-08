@@ -17,7 +17,7 @@ def _report(result: dict) -> None:
             print(f"  {kind:8} {v}")
     print("\nATT&CK techniques:")
     for t in result["techniques"]:
-        print(f"  {t['id']:11} {t['name']}  (\"{t['evidence']}\")")
+        print(f'  {t["id"]:11} {t["name"]}  ("{t["evidence"]}")')
 
 
 def demo() -> None:

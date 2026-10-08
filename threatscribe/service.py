@@ -33,7 +33,6 @@ class ThreatScribeService:
             "ioc_count": len(iocs),
             "iocs": group(iocs),
             "techniques": [
-                {"id": t.technique_id, "name": t.name, "evidence": t.evidence}
-                for t in techniques
+                {"id": t.technique_id, "name": t.name, "evidence": t.evidence} for t in techniques
             ],
         }

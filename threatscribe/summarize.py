@@ -20,9 +20,22 @@ _SYSTEM = (
 )
 
 _SALIENT = (
-    "ransomware", "malware", "campaign", "threat actor", "apt", "exploit",
-    "vulnerability", "phishing", "command and control", "c2", "backdoor",
-    "credential", "payload", "encrypt", "targets", "targeted",
+    "ransomware",
+    "malware",
+    "campaign",
+    "threat actor",
+    "apt",
+    "exploit",
+    "vulnerability",
+    "phishing",
+    "command and control",
+    "c2",
+    "backdoor",
+    "credential",
+    "payload",
+    "encrypt",
+    "targets",
+    "targeted",
 )
 
 _SENTENCE = re.compile(r"(?<=[.!?])\s+")

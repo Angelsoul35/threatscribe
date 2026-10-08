@@ -21,13 +21,25 @@ _TECHNIQUES: dict[str, tuple[str, tuple[str, ...]]] = {
     "T1055": ("Process Injection", ("process injection", "process hollowing", "dll injection")),
     "T1486": ("Data Encrypted for Impact", ("ransomware", "encrypts files", "ransom note")),
     "T1071": ("Application Layer Protocol", ("command and control", "c2 server", "beacon")),
-    "T1105": ("Ingress Tool Transfer", ("download a payload", "downloads a payload",
-                                        "downloaded a payload", "drops a file", "stage a payload")),
-    "T1003": ("Credential Dumping", ("mimikatz", "lsass", "credential dumping",
-                                     "dump credentials")),
+    "T1105": (
+        "Ingress Tool Transfer",
+        (
+            "download a payload",
+            "downloads a payload",
+            "downloaded a payload",
+            "drops a file",
+            "stage a payload",
+        ),
+    ),
+    "T1003": (
+        "Credential Dumping",
+        ("mimikatz", "lsass", "credential dumping", "dump credentials"),
+    ),
     "T1027": ("Obfuscated Files", ("base64", "obfuscated", "packed executable")),
-    "T1190": ("Exploit Public-Facing App", ("exploits a vulnerability", "exploited cve",
-                                            "public-facing", "web shell")),
+    "T1190": (
+        "Exploit Public-Facing App",
+        ("exploits a vulnerability", "exploited cve", "public-facing", "web shell"),
+    ),
 }
 
 
