@@ -6,6 +6,12 @@ describes, and a short **summary**. Indicator extraction and tagging are
 deterministic (regex and a curated keyword map); only the summary uses an LLM,
 and even that falls back to a deterministic extractive summary offline.
 
+[![CI](https://img.shields.io/badge/CI-GitHub%20Actions-blue)](.github/workflows/ci.yml)
+[![Python](https://img.shields.io/badge/python-3.11%2B-blue)](pyproject.toml)
+[![License](https://img.shields.io/badge/license-MIT-green)](LICENSE)
+
+---
+
 ## Why this split matters
 
 Threat reports are prose written for humans, but a SOC needs the machine-readable
