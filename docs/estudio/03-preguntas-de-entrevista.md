@@ -29,9 +29,9 @@ están dentro de una URL o correo. Todo deduplicado sin importar mayúsculas.
 
 **¿Por qué un mapa de palabras clave y no un clasificador?**
 Porque debe ser transparente (cada etiqueta muestra la frase que la disparó),
-ampliable sin reentrenar, y honesto: es una ayuda de primera pasada, no un mapeo
-autoritativo. Un clasificador sería opaco y necesitaría datos etiquetados que no
-existen de forma estable.
+ampliable sin reentrenar, y verificable: cada etiqueta queda anclada a una frase,
+así que es una ayuda de primera pasada, no un mapeo autoritativo. Un clasificador
+sería opaco y necesitaría datos etiquetados que no existen de forma estable.
 
 ## Sobre robustez
 

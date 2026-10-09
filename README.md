@@ -50,6 +50,57 @@ three-sentence analyst summary. Offline, an extractive summariser selects the mo
 salient sentences by position and threat-vocabulary density. Each summary records
 its `source` (`llm` or `extractive`).
 
+## Validated on real CVE data
+
+threatscribe's deterministic engines are validated on **6,000 real CVEs** (years
+2016–2023) from the public Hugging Face dataset
+[`harinpurumandla/cve-severity-dataset`](https://huggingface.co/datasets/harinpurumandla/cve-severity-dataset)
+— each a real NVD description paired with its ground-truth CVSS v3.1 vector. A
+snapshot is vendored under `datasets/`; run the full report offline with:
+
+```bash
+python -m threatscribe.real_benchmark
+```
+
+**CVSS v3.1 scoring (`cvss.py`).** A new deterministic engine parses the CVSS
+vector a report cites and computes the base score with the exact FIRST.org v3.1
+formula, then the qualitative severity. It reproduces the canonical reference
+scores **exactly** (`AV:N/AC:L/PR:N/UI:N/S:U/C:H/I:H/A:H` → 9.8, `…C:H/I:N/A:N`
+→ 7.5, `…UI:R/S:C/C:L/I:L/A:N` → 6.1, POODLE → 3.1) and derives a severity band
+for all 6,000 vectors (785 CRITICAL, 2,448 HIGH, 2,499 MEDIUM, 268 LOW).
+
+**Impact recovery from prose.** A curated phrase map — the same auditable,
+evidence-carrying approach as the ATT&CK tagger — reads the formulaic NVD wording
+(`execute arbitrary code`, `denial of service`, `obtain sensitive information`)
+and recovers the primary impact class, validated against the class implied by the
+real vector's confidentiality/integrity/availability triad. On a **held-out**
+split (3,012 CVEs, leakage-free by hashing the CVE id):
+
+| Metric | Result | Baseline / control |
+| ------ | ------ | ------------------ |
+| Accuracy | **0.487** | majority baseline 0.376 |
+| Macro-F1 | **0.414** | scrambled-input control 0.173 |
+| Covered-precision (where a phrase fires) | **0.782** | — |
+| `TOTAL` recall / `INFO` precision | 0.893 / 0.764 | — |
+
+The signal **generalises**: the development set scores 0.451 (a train–test gap of
+only −0.036), and 5-fold accuracy is 0.469 ± 0.018. A **scrambled-input control**
+— shuffling each description's words to destroy the phrases while keeping the
+vocabulary — collapses accuracy to 0.387 (≈ the baseline) and macro-F1 from 0.414
+to 0.173, confirming the signal lives in the wording, not an artifact.
+
+**Indicator extraction on real reports.** Run on the real descriptions,
+`ioc.extract` recovers every embedded CVE identifier with **precision and recall
+of 1.000** and extracts 1,131 indicators across the corpus with no false
+positives — the exact, reproducible behaviour an IOC feed requires.
+
+**How to extend.** Impact recovery abstains on wording it does not list (coverage
+0.371), which is a visible gap, not a silent error: broaden the phrase map, or add
+per-metric extractors for attack vector and user interaction, to raise coverage
+while the scramble control keeps the signal verifiable. See
+`docs/estudio/04-validacion-datos-reales.md` for the full method, formulas and a
+worked example.
+
 ## Quick start
 
 ```bash
@@ -93,7 +144,10 @@ service, the HTTP API, and the CLI. Nothing in the tests touches a network.
 
 - `docs/architecture.md` — extraction, tagging, summarisation, and the data flow.
 - `docs/adr/` — the main design decisions and their trade-offs.
-- `docs/estudio/` — a study guide in Spanish.
+- `docs/estudio/` — a study guide in Spanish, including the real-data validation.
+- `threatscribe/real_data.py` / `threatscribe/real_benchmark.py` — the real-CVE
+  loader/fetcher and the validation report (`python -m threatscribe.real_benchmark`).
+- `datasets/README.md` — provenance for the vendored real-CVE corpus.
 
 ## License
 

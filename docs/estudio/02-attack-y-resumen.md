@@ -14,7 +14,8 @@ Es un **lookup curado, no un clasificador**, a propósito:
   (la frase evidencia), y puede rechazarla.
 - **Sin datos de entrenamiento, fácil de ampliar:** añadir cobertura es añadir una
   frase revisada por un humano, no reentrenar.
-- **Honesto en su rol:** es una **ayuda de primera pasada**, no un mapeo
+- **Riguroso en su rol:** cada etiqueta está respaldada por una frase del texto,
+  así que es **verificable**; es una ayuda de primera pasada, no un mapeo
   autoritativo que reemplace al analista.
 
 Un clasificador aprendido sería opaco, necesitaría un dataset etiquetado que no

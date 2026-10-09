@@ -13,6 +13,10 @@ qué" de cada decisión en tu idioma.
    palabras clave y el resumen con LLM + respaldo extractivo.
 3. **[03-preguntas-de-entrevista.md](03-preguntas-de-entrevista.md)** — preguntas
    típicas y cómo responderlas con seguridad.
+4. **[04-validacion-datos-reales.md](04-validacion-datos-reales.md)** — la
+   validación sobre 6.000 CVE reales: estructura y fórmula CVSS, las métricas
+   (precision/recall/F1, baseline), sobre/infraajuste, held-out y validación
+   cruzada, el control de sanidad, y un ejemplo trabajado con números reales.
 
 ## Resumen en una frase
 

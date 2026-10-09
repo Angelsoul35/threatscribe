@@ -23,8 +23,8 @@ presented as a **first-pass aid**, not an authoritative mapping.
   analyst sees exactly why it was applied and can reject it.
 - **No training data needed, easy to extend.** Adding coverage is adding a phrase,
   reviewed by a human, not retraining a model.
-- **Honest about its role.** It speeds up the analyst's mapping; it does not claim
-  to replace it.
+- **Grounded in its role.** Every tag is backed by a phrase in the text, so the
+  tool is verifiable: it speeds up the analyst's mapping without overstating it.
 - **Trade-off.** A keyword map misses techniques described in wording it does not
   list, and can over-tag on an ambiguous phrase. Both are visible (a tag shows its
   evidence; a missing tag is a gap to fill with a phrase), which is preferable to
